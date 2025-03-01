@@ -9,6 +9,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { user, logout } = useAuth();
+  
+  // Check if we're on the home page
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +44,9 @@ export default function Navbar() {
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-gold' 
-          : 'bg-transparent'
+          : isHomePage
+            ? 'bg-transparent'
+            : 'bg-white/95 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +58,7 @@ export default function Navbar() {
               src="/elida-logo.svg" 
               alt="ÉLIDA" 
               className={`h-16 transition-all duration-300 ${
-                isScrolled ? 'brightness-100' : 'brightness-0 invert'
+                (isScrolled || !isHomePage) ? 'brightness-100' : 'brightness-0 invert'
               }`}
             />
           </Link>
@@ -66,8 +71,8 @@ export default function Navbar() {
                 to={link.path}
                 className={`relative font-lato text-sm uppercase tracking-wider transition-all duration-300 ${
                   location.pathname === link.path
-                    ? isScrolled ? 'text-elida-gold font-medium' : 'text-white font-medium'
-                    : isScrolled ? 'text-gray-600 hover:text-elida-gold' : 'text-gray-200 hover:text-white'
+                    ? (isScrolled || !isHomePage) ? 'text-elida-gold font-medium' : 'text-white font-medium'
+                    : (isScrolled || !isHomePage) ? 'text-gray-600 hover:text-elida-gold' : 'text-gray-200 hover:text-white'
                 }`}
               >
                 {link.name}
@@ -75,7 +80,7 @@ export default function Navbar() {
                   <motion.div
                     layoutId="underline"
                     className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                      isScrolled ? 'bg-elida-gold' : 'bg-white'
+                      (isScrolled || !isHomePage) ? 'bg-elida-gold' : 'bg-white'
                     }`}
                     initial={false}
                   />
@@ -87,7 +92,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               className={`flex items-center gap-1 font-lato text-sm uppercase tracking-wider transition-all duration-300 ${
-                isScrolled ? 'text-gray-600 hover:text-elida-gold' : 'text-gray-200 hover:text-white'
+                (isScrolled || !isHomePage) ? 'text-gray-600 hover:text-elida-gold' : 'text-gray-200 hover:text-white'
               }`}
             >
               Apie mus
@@ -95,7 +100,7 @@ export default function Navbar() {
             </a>
             {user ? (
               <div className="flex items-center gap-4">
-                <span className={`text-sm ${isScrolled ? 'text-gray-600' : 'text-gray-200'}`}>
+                <span className={`text-sm ${(isScrolled || !isHomePage) ? 'text-gray-600' : 'text-gray-200'}`}>
                   {user.email}
                 </span>
                 <motion.button
@@ -103,7 +108,7 @@ export default function Navbar() {
                   whileTap={{ scale: 0.95 }}
                   onClick={handleLogout}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ${
-                    isScrolled 
+                    (isScrolled || !isHomePage) 
                       ? 'bg-elida-gold/10 text-elida-gold hover:bg-elida-gold hover:text-white'
                       : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
                   }`}
@@ -120,7 +125,7 @@ export default function Navbar() {
                 <Link
                   to="/signin"
                   className={`flex items-center gap-2 px-7 py-2.5 rounded-full transition-all duration-300 ${
-                    isScrolled 
+                    (isScrolled || !isHomePage) 
                       ? 'bg-gradient-to-r from-elida-gold to-elida-accent text-white shadow-gold hover:shadow-gold-lg'
                       : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm border border-white/20'
                   }`}
@@ -137,7 +142,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(!isOpen)}
             className={`md:hidden p-2 rounded-md transition-colors ${
-              isScrolled 
+              (isScrolled || !isHomePage) 
                 ? 'text-gray-600 hover:text-elida-gold hover:bg-gray-100'
                 : 'text-white hover:bg-white/10'
             }`}

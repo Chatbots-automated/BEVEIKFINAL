@@ -393,6 +393,15 @@ export default function BookingCalendar() {
                         : 'border border-gray-100 hover:border-elida-gold/50 hover:shadow-md bg-white/70 backdrop-blur-sm'
                       }`}
                   >
+                    {/* Cabin image */}
+                    <div className="w-full h-32 mb-4 overflow-hidden rounded-lg">
+                      <img 
+                        src={cabin.image} 
+                        alt={cabin.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    
                     {/* Shimmer effect on selected cabin */}
                     {selectedCabin === cabin.id && (
                       <div className="absolute inset-0 shimmer pointer-events-none"></div>

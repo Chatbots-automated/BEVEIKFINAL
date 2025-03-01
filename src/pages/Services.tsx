@@ -19,7 +19,8 @@ export default function Services() {
         "Aromaterapija",
         "Muzikos sistema"
       ],
-      price: "0.70€/min"
+      price: "0.70€/min",
+      image: "https://i.imgur.com/BglgqEp.jpeg"
     },
     {
       id: 'standing-1',
@@ -32,7 +33,8 @@ export default function Services() {
         "Vėdinimo sistema",
         "LED apšvietimas"
       ],
-      price: "0.70€/min"
+      price: "0.70€/min",
+      image: "https://i.imgur.com/BfJvZrr.jpeg"
     },
     {
       id: 'cosmetics',
@@ -82,6 +84,15 @@ export default function Services() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
               >
+                {service.image && (
+                  <div className="h-64 overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
                 <div className="p-8">
                   <div className="w-16 h-16 bg-elida-cream rounded-xl flex items-center justify-center text-elida-gold mb-6 group-hover:bg-elida-gold group-hover:text-white transition-all duration-300">
                     {service.icon}

@@ -37,7 +37,7 @@ export default function Footer() {
               <li>
                 <a href="tel:+37066446916" className="flex items-center text-gray-400 hover:text-elida-gold transition-colors">
                   <Phone className="h-5 w-5 mr-2" />
-                  +370 664 46916
+                  (0-644) 40596
                 </a>
               </li>
               <li>
@@ -104,11 +104,6 @@ export default function Footer() {
               >
                 <Facebook className="h-6 w-6" />
               </a>
-            </div>
-            <div className="text-gray-400 text-sm">
-              <p>Simona Dilė IĮ</p>
-              <p>Įmonės kodas: 306722261</p>
-              <p>Danutės g. 43-37, LT-36234 Panevėžys</p>
             </div>
           </div>
         </div>
