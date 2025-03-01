@@ -5,7 +5,7 @@ export const cabins: Cabin[] = [
     id: 'lying-1',
     name: '1 kabina gulimas',
     type: 'lying',
-    description: 'Aukščiausios klasės gulima kabina su 42UV lempom ir vedinimo sistema',
+    description: 'Modernus gulimas soliariumas su pažangia vėdinimo sistema ir komfortiška temperatūra.',
     image: 'https://i.imgur.com/xGtSKlR.jpeg',
     pricePerMinute: 0.70
   },
@@ -13,7 +13,7 @@ export const cabins: Cabin[] = [
     id: 'standing-1',
     name: '2 kabina stovimas',
     type: 'standing',
-    description: 'Prabangi stovima kabina su 42UV lempom ir vėdinimo sistema',
+    description: 'Vertikalus soliariumas su purškimo funkcija ir gaiviu vėdinimu.',
     image: 'https://i.imgur.com/BfJvZrr.jpeg',
     pricePerMinute: 0.70
   },

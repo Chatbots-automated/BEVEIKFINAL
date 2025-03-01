@@ -14,10 +14,15 @@ export default function Services() {
       title: "Gulimas Soliariumas",
       description: "Modernus gulimas soliariumas su pažangia vėdinimo sistema ir komfortiška temperatūra.",
       features: [
-        "42 UV lempos",
-        "Vėdinimo sistema",
+        "44 kūno lempos, 4 veido lempos",
+        "Viso kūno vėdinimo sistema",
         "Aromaterapija",
-        "Muzikos sistema"
+        "Muzikos sistema",
+        "Oro kondicionierius",
+        "Balso gidas",
+        "Kokybiška garso sistema",
+        "Aqua vandens dulksna",
+        "Aroma terapija"
       ],
       price: "0.70€/min",
       image: "https://i.imgur.com/BglgqEp.jpeg"
@@ -28,10 +33,11 @@ export default function Services() {
       title: "Stovimas Soliariumas",
       description: "Vertikalus soliariumas su purškimo funkcija ir gaiviu vėdinimu.",
       features: [
-        "48 UV lempos",
-        "Purškimo sistema",
-        "Vėdinimo sistema",
-        "LED apšvietimas"
+        "52 kūno lempos, 2 pečių zonos lempos",
+        "Aqua vandens dulksna",
+        "Viso kūno vėdinimo sistema",
+        "Balso gidas",
+        "Kokybiška garso sistema"
       ],
       price: "0.70€/min",
       image: "https://i.imgur.com/BfJvZrr.jpeg"
@@ -47,7 +53,8 @@ export default function Services() {
         "Fiksatoriai",
         "Apsauginiai kremai"
       ],
-      price: "Nuo 5€"
+      price: "Nuo 5€",
+      image: "https://i.imgur.com/VR51xmt.png"
     }
   ];
 

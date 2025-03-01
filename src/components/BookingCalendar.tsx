@@ -171,6 +171,41 @@ export default function BookingCalendar() {
     }
   };
 
+  // Cabin features based on cabin type
+  const getCabinFeatures = (cabinId: string) => {
+    if (cabinId === 'lying-1') {
+      return [
+        "44 kūno lempos, 4 veido lempos",
+        "Viso kūno vėdinimo sistema",
+        "Kokybišką garso sistema"
+      ];
+    } else if (cabinId === 'lying-2') {
+      return [
+        "44 kūno lempos, 4 veido lempos",
+        "Viso kūno vėdinimo sistema",
+        "Aromaterapija",
+        "Muzikos sistema",
+        "Oro kondicionierius",
+        "Balso gidas",
+        "Kokybiška garso sistema",
+        "Aqua vandens dulksna",
+        "Aroma terapija"
+      ];
+    } else if (cabinId === 'standing-1') {
+      return [
+        "52 kūno lempos, 2 pečių zonos lempos",
+        "Purškimo sistema",
+        "Vėdinimo sistema",
+        "LED apšvietimas",
+        "Aqua vandens dulksna",
+        "Viso kūno vėdinimo sistema",
+        "Balso gidas",
+        "Kokybiška garso sistema"
+      ];
+    }
+    return [];
+  };
+
   // Cabin icon mapping
   const getCabinIcon = (type: string) => {
     switch(type) {
@@ -419,6 +454,25 @@ export default function BookingCalendar() {
                       </div>
                     </div>
                     <p className="text-sm text-gray-500 mb-3 line-clamp-2">{cabin.description}</p>
+                    
+                    {/* Features list */}
+                    {selectedCabin === cabin.id && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="mt-4 space-y-1"
+                      >
+                        <p className="text-xs font-medium text-elida-gold mb-2">Savybės:</p>
+                        <ul className="text-xs text-gray-500 space-y-1">
+                          {getCabinFeatures(cabin.id).map((feature, idx) => (
+                            <li key={idx} className="flex items-center">
+                              <span className="w-1.5 h-1.5 bg-elida-gold rounded-full mr-2 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
                     
                     {/* Selection indicator */}
                     {selectedCabin === cabin.id && (

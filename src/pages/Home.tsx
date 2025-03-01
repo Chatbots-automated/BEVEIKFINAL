@@ -63,7 +63,7 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="inline-block px-5 py-2 bg-elida-gold/20 backdrop-blur-sm text-elida-gold rounded-full text-sm font-medium mb-8 shimmer tracking-wider uppercase"
             >
-              Premium Soliariumai Panevėžyje
+              Soliariumų studija Panevėžyje
             </motion.span>
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
@@ -81,7 +81,7 @@ export default function Home() {
               transition={{ delay: 0.7, duration: 0.7 }}
               className="text-xl text-elida-beige mb-12 max-w-lg leading-relaxed"
             >
-              Aukščiausios kokybės soliariumai su naujausiomis technologijomis ir profesionaliu aptarnavimu
+              ELIDA - šiuolaikiška vieta Jūsų tobulam įdegiui
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
