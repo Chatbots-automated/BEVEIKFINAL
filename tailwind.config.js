@@ -18,8 +18,8 @@ export default {
         }
       },
       fontFamily: {
-        'playfair': ['"Playfair Display"', 'serif'],
-        'lato': ['Lato', 'sans-serif']
+        'cormorant': ['"Cormorant Garamond"', 'serif'],
+        'montserrat': ['Montserrat', 'sans-serif']
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',
@@ -54,6 +54,9 @@ export default {
       transitionProperty: {
         'height': 'height',
         'spacing': 'margin, padding',
+      },
+      letterSpacing: {
+        'widest': '0.2em',
       }
     }
   },

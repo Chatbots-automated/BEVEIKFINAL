@@ -1,84 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import { Product } from '../types/product';
 import { Search, SlidersHorizontal, Target, Crosshair } from 'lucide-react';
-
-const products: Product[] = [
-  {
-    id: 'TAC-JKT-001',
-    name: 'Urban Tactical Softshell Jacket',
-    category: 'Clothing',
-    description: 'A windproof and waterproof softshell jacket with reinforced elbow pads and multiple pockets. Ideal for outdoor activities, law enforcement, and everyday wear.',
-    price: 99.99,
-    sku: 'TAC-JKT-001',
-    image: 'https://images.unsplash.com/photo-1608236415053-3691791bbffe?auto=format&fit=crop&w=500&q=80',
-    variants: {
-      colors: ['Black', 'Olive Green', 'Coyote Brown', 'Ranger Green', 'Wolf Gray'],
-      sizes: ['S', 'M', 'L', 'XL', 'XXL']
-    }
-  },
-  {
-    id: 'MT-KNF-002',
-    name: 'Survival Multi-Tool Knife',
-    category: 'Tools & Equipment',
-    description: 'A compact multi-tool designed for camping, hiking, and tactical use. Comes with a nylon sheath for easy carrying.',
-    price: 39.99,
-    sku: 'MT-KNF-002',
-    image: 'https://images.unsplash.com/photo-1589236014604-c714677ee436?auto=format&fit=crop&w=500&q=80',
-    features: [
-      'Knife',
-      'Screwdriver',
-      'Bottle opener',
-      'Pliers',
-      'Saw'
-    ]
-  },
-  {
-    id: 'BAG-001',
-    name: 'Tactical Assault Backpack',
-    category: 'Bags',
-    description: 'Military-grade tactical backpack with MOLLE system, multiple compartments, and hydration bladder compatibility.',
-    price: 129.99,
-    sku: 'BAG-001',
-    image: 'https://images.unsplash.com/photo-1542327897-d73f4005b533?auto=format&fit=crop&w=500&q=80',
-    variants: {
-      colors: ['Black', 'Coyote Brown', 'Ranger Green'],
-    },
-    features: [
-      '40L Capacity',
-      'Water-resistant',
-      'Laptop compartment',
-      'MOLLE system'
-    ]
-  },
-  {
-    id: 'BOOT-001',
-    name: 'Tactical Combat Boots',
-    category: 'Footwear',
-    description: 'Durable combat boots with waterproof membrane, shock-absorbing soles, and reinforced toe protection.',
-    price: 149.99,
-    sku: 'BOOT-001',
-    image: 'https://images.unsplash.com/photo-1542327897-d73f4005b533?auto=format&fit=crop&w=500&q=80',
-    variants: {
-      colors: ['Black', 'Desert Tan', 'Olive'],
-      sizes: ['40', '41', '42', '43', '44', '45', '46']
-    },
-    features: [
-      'Waterproof',
-      'Steel toe',
-      'Anti-slip sole',
-      'Quick-lace system'
-    ]
-  }
-];
-
-const categories = ['All', 'Clothing', 'Footwear', 'Bags', 'Tools & Equipment'];
+import { fetchProducts } from '../services/productService';
 
 export default function ProductGrid() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [showFilters, setShowFilters] = useState(false);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setLoading(true);
+        const fetchedProducts = await fetchProducts();
+        setProducts(fetchedProducts);
+      } catch (err) {
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
+  const categories = ['All', ...new Set(products.map(product => product.category))];
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -88,6 +39,22 @@ export default function ProductGrid() {
     
     return matchesSearch && matchesCategory && matchesPrice;
   });
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-tactical-green"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-12 bg-red-50 rounded-lg">
+        <p className="text-red-600">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-6">

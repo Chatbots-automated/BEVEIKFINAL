@@ -16,8 +16,6 @@ export default function Services() {
       features: [
         "44 kūno lempos, 4 veido lempos",
         "Viso kūno vėdinimo sistema",
-        "Aromaterapija",
-        "Muzikos sistema",
         "Oro kondicionierius",
         "Balso gidas",
         "Kokybiška garso sistema",
